@@ -1,0 +1,41 @@
+/* Estilos para el contenedor */
+.container {
+    display: flex;
+}
+
+/* Estilos para la barra de navegación (dashboard) a la izquierda */
+.dashboard {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    width: 200px;
+    transition: transform 0.3s; /* Agrega una transición para suavizar la animación */
+}
+
+.dashboard ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dashboard ul li {
+    margin-bottom: 10px;
+}
+
+.dashboard a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+}
+
+.dashboard a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para el encabezado */
+.header {
+    background: linear-gradient(to bottom, #3498db, #2980b9);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    flex: 1;
+}
