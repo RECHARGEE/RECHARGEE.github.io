@@ -1,0 +1,30 @@
+/* Establecer una altura mínima para el contenido principal */
+body {
+    min-height: 100vh; /* Establecer la altura mínima al 100% de la altura de la ventana */
+    margin: 0; /* Eliminar márgenes predeterminados para evitar desbordamientos */
+}
+
+.img{
+    width: 160px;
+    height: 90px;
+}
+
+.centered-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+}
+
+/* En tu archivo "style.css" */
+footer {
+    background-color: #3498db; /* Color de fondo celeste */
+    color: #fff; /* Color del texto en el pie de página (blanco) */
+    padding: 7px; /* Espacio interno alrededor del contenido del pie de página */
+    text-align: center; /* Centrar el contenido horizontalmente */
+    position: fixed; /* Fijar la posición */
+    bottom: 0; /* Fijar en la parte inferior */
+    width: 100%; /* Ancho completo */
+}
