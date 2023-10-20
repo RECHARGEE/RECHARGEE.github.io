@@ -1,34 +1,16 @@
-const progressBar = document.querySelector('.progress-bar');
-const centeredText = document.querySelector('.centered-text');
-let progressWidth = 0;  // Valor inicial
+const languageSelect = document.querySelector(".navbar .nav-item.dropdown .dropdown-menu");
 
-// Define una función para ocultar la barra de progreso
-function hideProgressBar() {
-    progressBar.style.display = 'none';
-}
+languageSelect.addEventListener("mousedown", function (event) {
+    console.log("Click event triggered");
+    const selectedLanguage = event.target.getAttribute("data-lang");
+    if (selectedLanguage) {
+        const contentUrl = `/languages/${selectedLanguage}/index.html`;
 
-// Define una función para aumentar el valor de la barra de progreso de manera aleatoria
-function increaseProgressRandomly() {
-    if (progressWidth < 100) {
-        // Genera un valor aleatorio entre 1 y 10 y agrégalo al progreso
-        const randomIncrement = Math.floor(Math.random() * 10) + 1;
-        progressWidth = Math.min(100, progressWidth + randomIncrement);
-
-        progressBar.style.width = progressWidth + '%';
-        progressBar.setAttribute('aria-valuenow', progressWidth);
-
-        if (progressWidth >= 100) {
-            hideProgressBar();
-            centeredText.style.display = 'block';
-        }
+        const iframe = document.createElement('iframe');
+        iframe.src = contentUrl;
+        iframe.style.width = '100%';
+        iframe.style.height = '100vh';
+        document.body.innerHTML = ''; // Limpia el contenido actual
+        document.body.appendChild(iframe);
     }
-}
-
-// Configura un temporizador para aumentar gradualmente la barra de progreso de manera aleatoria
-const timer = setInterval(increaseProgressRandomly, 100);  // Aumenta cada 200 milisegundos (5 veces por segundo)
-
-// Detén el temporizador cuando se completa la barra de progreso
-if (progressWidth >= 100) {
-    clearInterval(timer);
-    hideProgressBar(); // Asegúrate de que la barra de progreso esté oculta por completo
-}
+});

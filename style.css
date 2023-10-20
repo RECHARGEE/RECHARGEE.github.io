@@ -9,9 +9,19 @@ body {
     height: 90px;
 }
 
+.image-view{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    width: 100%; /* La imagen ocupará el 100% del ancho del contenedor */
+    max-width: 100%; /* La imagen no se agrandará más allá de su tamaño original */
+    height: auto; /* Mantiene la proporción original de la imagen */
+}
+
 .centered-text {
     text-align: center;
-    position: absolute;
     top: 50%;
     left: 0;
     width: 100%;
