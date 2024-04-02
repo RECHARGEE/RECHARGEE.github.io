@@ -1,0 +1,59 @@
+.futuristic {
+    background-color: #0c1d2f;
+    color: #fff;
+    text-align: center;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+#score {
+    font-size: 36px;
+}
+
+#touchArea {
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#boosters {
+    margin-top: 20px;
+}
+
+#boosters button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#boosters button:disabled {
+    background-color: #808080; /* Cambiar a un color gris cuando el botón está desactivado */
+}
+
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.toast {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: none;
+}
