@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargar archivo</title>
+</head>
+<body>
+
+<script>
+    // Función para comenzar la descarga del archivo después de un retardo
+    function descargarArchivoConRetraso(url, retraso) {
+        setTimeout(function() {
+            window.location.href = url;
+        }, retraso);
+    }
+
+    // Función para comenzar la descarga del archivo
+    function descargarArchivo() {
+        // Obtener el parámetro 'archivo' de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const archivoSeleccionado = urlParams.get('3B9C358F36F0A31B6AD3E14F309C7CF198AC9246E8316F9CE543D5B19AC02B80');
+
+        // Descargar el archivo según el archivo seleccionado después de un retardo de 2 segundos
+        switch (archivoSeleccionado) {
+            case '6B86B273FF34FCE19D6B804EFF5A3F5747ADA4EAA22F1D49C01E52DDB7875B4B':
+                descargarArchivoConRetraso('./app/app.apk', 2000); // Descargar archivo APK
+                break;
+            case 'archivo2':
+                descargarArchivoConRetraso('./app/testing.file', 2000); // Descargar otro archivo
+                break;
+            default:
+                // En caso de un archivo no válido, redirigir a una página de error o a la página index después de 2 segundos
+                setTimeout(function() {
+                    window.location.href = 'sorry.html';
+                }, 2000);
+                break;
+        }
+    }
+
+    // Llamar a la función para iniciar la descarga
+    descargarArchivo();
+</script>
+
+</body>
+</html>

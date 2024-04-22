@@ -1,0 +1,12 @@
+{
+  "files": [
+    {
+      "filename": "Prueba",
+      "fileurl": "/assets/app/archivo1.apk"
+    },
+    {
+      "filename": "Archivo2.apk",
+      "fileurl": "/assets/app/archivo2.apk"
+    }
+  ]
+}

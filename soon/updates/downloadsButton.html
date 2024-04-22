@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <script>
+      // Verificar si el usuario ha iniciado sesión
+      if (!sessionStorage.getItem("isLoggedIn")) {
+        // Si no ha iniciado sesión, redirigir al usuario a la página de inicio de sesión
+        window.location.href = "../";
+      }
+      // Precargar el audio en caché
+      const audio = new Audio("../audio/audio1.mp3"); // Cambia 'ruta/al/sonido' con la ubicación real del archivo de sonido
+      audio.load();
+      // Reproducir sonido automáticamente al cargar la página
+      function playBackgroundSound() {
+        audio.loop = true;
+        audio.play();
+      }
+      setTimeout(function () {
+        // Limpiar el estado de inicio de sesión
+        sessionStorage.removeItem("isLoggedIn");
+        // Redirigir al usuario de nuevo a la página de inicio de sesión
+        window.location.href = "./"; // Reemplaza './' con la URL de la página de inicio de sesión
+      }, 15 * 60 * 1000); // 15 minutos en milisegundos
+    </script>
+    <meta charset="UTF-8" />
+    <audio src="../audio/audio1.mp3"></audio>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Implementaciones</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      #internet-ok,
+      #internet-bad {
+        font-size: 30px;
+        display: none;
+      }
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+        font-size: 20px;
+      }
+      #download-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      #toast {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 15px 20px;
+        background-color: #333;
+        color: white;
+        border-radius: 5px;
+        z-index: 999;
+      }
+    </style>
+    <h1>Algunas nuevas características o implementaciones</h1>
+    <header>
+      <center>
+        <ion-icon name="wifi-outline" id="internet-ok"></ion-icon
+        ><ion-icon name="globe-outline" id="internet-bad"></ion-icon>
+      </center>
+    </header>
+    <h3>
+      <ion-icon name="construct-outline"></ion-icon> = En desarrollo<br /><ion-icon
+        name="bug-outline"
+      ></ion-icon>
+      = Se puede ingresar
+    </h3>
+  </head>
+  <body>
+    <div id="toast"></div>
+    <!--Implementacion 1-->
+    <p>----------------------------------------------------------------</p>
+    <h2 id="#1">#1 IMPLEMENTACION</h2>
+    <p>Boton de descarga con un retardo de 5 segundos.</p>
+    <button id="download-btn">Descargar</button>
+    <p>
+      Fase: Prueba <ion-icon name="construct-outline"></ion-icon
+      ><ion-icon name="bug-outline"></ion-icon>
+    </p>
+    <script>
+      document
+        .getElementById("download-btn")
+        .addEventListener("click", function () {
+          var count = 5; // Cuenta regresiva en segundos
+          var interval = setInterval(function () {
+            if (count > 1) {
+              document.getElementById("download-btn").innerText =
+                "Descargando en " + count + " segundos...";
+            } else if (count === 1) {
+              document.getElementById("download-btn").innerText =
+                "Descargando en 1 segundo...";
+            } else {
+              document.getElementById("download-btn").innerText =
+                "Descargando...";
+              clearInterval(interval);
+              downloadFile();
+            }
+            count--;
+          }, 1000);
+        });
+
+      function downloadFile() {
+        // Simulación de descarga de archivo
+        fetch("/assets/app/app.apk")
+          .then((response) => response.blob())
+          .then((blob) => {
+            var url = window.URL.createObjectURL(blob);
+            var a = document.createElement("a");
+            a.href = url;
+            a.download = "healtpix.apk"; // Cambia 'nombre_del_archivo' por el nombre que desees
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+          });
+      }
+      window.onload = function () {
+        playBackgroundSound();
+      };
+    </script>
+    <!--Implementacion 2-->
+    <p>---------------------------------------------------------------------</p>
+    <h2 id="#2">#2 IMPLEMENTACION</h2>
+    <p>
+      Una nueva interfaz (bueno no tanto) pero la indexacion de busqueda se ha
+      modificado.
+    </p>
+    <a href="./download/ui.html">Ver nueva interfaz</a>
+    <p>
+      Fase: Prueba <ion-icon name="construct-outline"></ion-icon
+      ><ion-icon name="bug-outline"></ion-icon>
+    </p>
+    <!--Implementacion 3-->
+    <p>---------------------------------------------------------------------</p>
+    <h2 id="#3">#3 IMPLEMENTACION</h2>
+    <p>
+      En la zona de juegos se haran arreglos y soluciones para poder hacer que
+      se pueda acceder en la version movil (apk)
+    </p>
+    <a href="">Correción por errores</a>
+    <p>
+      Fase : Prueba <ion-icon name="construct-outline"></ion-icon
+      ><ion-icon name="bug-outline"></ion-icon>
+    </p>
+    <p>---------------------------------------------------------------------</p>
+    <footer style="background: gray; color: red; padding: 3px; margin: 0">
+      Hola
+    </footer>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+<script src="/you-internet-is-god.js"></script>
+  </body>
+</html>

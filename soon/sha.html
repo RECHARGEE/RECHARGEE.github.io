@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador de Hash SHA-256</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      #hashResult {
+        font-size: 18px;
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .loader {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-top: 4px solid #007bff;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+        margin-top: 10px;
+        display: none; /* Inicialmente oculto */
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Generador de Hash SHA-256</h1>
+      <form id="hashForm">
+        <label for="textInput">Ingresa el texto:</label>
+        <input type="text" id="textInput" name="textInput" />
+        <button type="button" onclick="generateHash()">Generar Hash</button>
+        <div id="loader" class="loader"></div>
+      </form>
+      <textarea
+        id="hashResult"
+        onclick="copyToClipboard()"
+        style="display: none"
+        rows="10"
+        cols="56"
+      ></textarea>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+      // Función para generar el hash SHA-256
+      function generateHash() {
+        var textInput = document.getElementById("textInput").value;
+        var hashResult = document.getElementById("hashResult");
+        var loader = document.getElementById("loader");
+
+        if (textInput.trim() === "") {
+          hashResult.innerText = "Por favor, ingresa un texto válido.";
+          return;
+        }
+
+        // Mostrar el icono de carga
+        loader.style.display = "block";
+
+        setTimeout(function () {
+          var hashedText = CryptoJS.SHA256(textInput).toString();
+          hashResult.innerText = hashedText;
+          hashResult.style.display = "block";
+          // Ocultar el icono de carga después de mostrar el resultado
+          loader.style.display = "none";
+        }, 1000); // Simulación de tiempo de cálculo del hash
+      }
+
+      // Función para copiar el contenido del output al portapapeles
+      function copyToClipboard() {
+        var hashResult = document.getElementById("hashResult");
+        var textArea = document.createElement("textarea");
+        textArea.value = hashResult.innerText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+
+        // Mostrar un Toast para indicar que se copió al portapapeles
+        Toastify({
+          text: "Hash copiado al portapapeles",
+          duration: 3000, // Duración del Toast en milisegundos (opcional)
+          gravity: "bottom", // Posición del Toast (opcional)
+          backgroundColor: "#007bff", // Color de fondo del Toast (opcional)
+          stopOnFocus: true, // Detener el Toast cuando se hace clic en él (opcional)
+        }).showToast();
+      }
+
+      // Función para ejecutar generateHash al presionar Enter
+      document
+        .getElementById("hashForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+          generateHash(); // Llamar a la función para generar el hash
+        });
+    </script>
+  </body>
+</html>

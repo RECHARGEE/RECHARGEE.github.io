@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      // Verificar si el usuario ha iniciado sesión
+      if (!sessionStorage.getItem("isLoggedIn")) {
+        // Si no ha iniciado sesión, redirigir al usuario a la página de inicio de sesión
+        window.location.href = "../";
+      }
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UPDATES | COMING SOON</title>
+  </head>
+  <body>
+    <header>
+      <center>
+        <h1 style="background: gray; color: greenyellow; padding: 5px">
+          Seccion de pruebas
+        </h1>
+      </center>
+    </header>
+    <p>Funciones futuras:</p>
+    <!--A empezar pues...-->
+    <details>
+      <summary>Menu</summary>
+      <hr />
+      <ul>
+        <li>
+          <a href="./downloadsButton.html">Update in section of downloads</a>
+        </li>
+        <hr />
+        <li></li>
+        <hr />
+        <li></li>
+      </ul>
+    </details>
+    <button id="logout-button">Cerrar Sesión</button>
+    <script>
+      document
+        .getElementById("logout-button")
+        .addEventListener("click", function () {
+          // Eliminar el estado de inicio de sesión
+          sessionStorage.removeItem("isLoggedIn");
+          // Redirigir al usuario de nuevo a la página de inicio de sesión
+          window.location.href = "./"; // Reemplaza './' con la URL de la página de inicio de sesión
+        });
+        setTimeout(function() {
+            // Limpiar el estado de inicio de sesión
+            sessionStorage.removeItem('isLoggedIn');
+            // Redirigir al usuario de nuevo a la página de inicio de sesión
+            window.location.href = './'; // Reemplaza './' con la URL de la página de inicio de sesión
+        }, 15 * 60 * 1000); // 15 minutos en milisegundos
+    </script>
+  </body>
+</html>
